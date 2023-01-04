@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -123,7 +124,26 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        // Start the Game Flow --passing selected 6 images
+        findViewById(R.id.btnSubmit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (selectedImageList.size() == 6) {
+                    Log.d("Starting Intent","To Start Game");
+
+                    Intent intent = new Intent(MainActivity.this, GameActivity.class);
+                    Log.d("Intenet","List Size "+selectedImageList.size());
+                    intent.putExtra("selectedimgList", selectedImageList);
+                    startActivity(intent);
+
+                    System.out.println("intent okay");
+                    Log.d("Ending Intent","To Start Game");
+                }
+            }
+        });
     }
+
 
     private List<String> parsingDocumentElement(Elements selectedElement) {
         List<String> stringList=new ArrayList<>();
